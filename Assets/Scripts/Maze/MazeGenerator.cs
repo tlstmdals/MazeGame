@@ -8,9 +8,7 @@ public class MazeGenerator
         var grid = new MazeGrid(config.Width, config.Height);
         var rng = config.UseRandomSeed ? new Random() : new Random(config.Seed);
 
-        grid.Cells[0, 0].Type = CellType.Path;
         DFS(grid, 0, 0, rng);
-
         return grid;
     }
 
@@ -18,32 +16,24 @@ public class MazeGenerator
     {
         grid.GetCell(x, y).IsVisited = true;
 
-        List<(int dx, int dy)> dirs = new List<(int, int)>
+        var dirs = new List<(int dx, int dy)>
         {
-            (1, 0),
-            (-1, 0),
-            (0, 1),
-            (0, -1)
+            (1, 0), (-1, 0), (0, 1), (0, -1)
         };
 
         Shuffle(dirs, rng);
 
-        foreach ((int dx, int dy) in dirs)
+        foreach (var (dx, dy) in dirs)
         {
-            int nx = x + dx * 2;
-            int ny = y + dy * 2;
-            if (!grid.InBounds(nx, ny))
-            {
-                continue;
-            }
+            int nx = x + dx;
+            int ny = y + dy;
+            if (!grid.InBounds(nx, ny)) continue;
 
-            var nextCell = grid.GetCell(nx, ny);
-            if (!nextCell.IsVisited)
+            var next = grid.GetCell(nx, ny);
+            if (!next.IsVisited)
             {
-                // 길을 뚫는다
-                grid.GetCell(x + dx, y + dy).Type = CellType.Path;
-                nextCell.Type = CellType.Path;
-
+                // ✅ "중간칸 Path" 같은 거 없이, 두 셀 사이 벽을 제거
+                grid.RemoveWallBetween(x, y, nx, ny);
                 DFS(grid, nx, ny, rng);
             }
         }
