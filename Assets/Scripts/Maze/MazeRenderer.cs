@@ -7,7 +7,9 @@ public class MazeRenderer : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject floorPrefab;
 
-    public GameObject doorWallPrefab;
+    [Header("Door Wall Prefabs")]
+    public GameObject fakeDoorWallPrefab;
+    public GameObject goalDoorWallPrefab;
 
     public float cellSize = 1f;
 
@@ -30,38 +32,71 @@ public class MazeRenderer : MonoBehaviour
         foreach (Transform child in transform) children.Add(child);
         foreach (Transform child in children) Destroy(child.gameObject);
 
-        // 1) 바닥 렌더
+        // 1) 바닥 렌더 + 워커블 셀 수집
+        var walkable = new List<Vector3>();
+
         if (floorPrefab != null)
         {
             for (int x = 0; x < grid.Width; x++)
             for (int y = 0; y < grid.Height; y++)
             {
-                SpawnWithGroundSnap(floorPrefab, CellCenter(x, y), Quaternion.identity);
+                Vector3 cellPos = CellCenter(x, y);
+                SpawnWithGroundSnap(floorPrefab, cellPos, Quaternion.identity);
+
+                // ✅ 텔포 후보 셀 등록(바닥 전체를 워커블로 취급)
+                walkable.Add(cellPos);
             }
         }
 
-        // 2) ✅ doorWallPrefab을 배치할 "내벽" 엣지들을 선택 (외벽 제외)
+        // ✅ 텔포 유틸에 등록
+        TeleportUtility.RegisterWalkableCells(walkable);
+
+        // 2) doorWall을 배치할 "내벽" 엣지들을 선택 (외벽 제외)
         List<WallEdge> doorWalls = PickDoorWallEdgesInnerOnly();
 
-        // HashSet으로 빠르게 조회
-        var doorEdges = new HashSet<WallEdge>(new WallEdgeComparer());
-        foreach (var e in doorWalls) doorEdges.Add(e);
+        // 2-1) ✅ 도어 엣지별 프리팹 매핑 구성
+        // - 1개: Goal
+        // - 나머지: Fake
+        var doorPrefabMap = new Dictionary<WallEdge, GameObject>(new WallEdgeComparer());
 
-        // 3) 벽 렌더: doorEdges에 포함되면 doorWallPrefab, 아니면 wallPrefab
-        RenderEdges(doorEdges);
+        if (doorWalls.Count > 0)
+        {
+            // GoalDoor 1개 선택 (첫 번째를 Goal로 고정)
+            // 원하면 랜덤으로 바꿔도 됨.
+            WallEdge goalEdge = doorWalls[0];
+
+            if (goalDoorWallPrefab != null)
+                doorPrefabMap[goalEdge] = goalDoorWallPrefab;
+            else
+                Debug.LogWarning("[MazeRenderer] goalDoorWallPrefab이 비어있습니다. GoalDoor 배치가 되지 않습니다.");
+
+            // 나머지는 FakeDoor
+            for (int i = 1; i < doorWalls.Count; i++)
+            {
+                if (fakeDoorWallPrefab != null)
+                    doorPrefabMap[doorWalls[i]] = fakeDoorWallPrefab;
+                else
+                    Debug.LogWarning("[MazeRenderer] fakeDoorWallPrefab이 비어있습니다. FakeDoor 배치가 되지 않습니다.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[MazeRenderer] doorWalls가 0개입니다. 문이 배치되지 않습니다.");
+        }
+
+        // 3) 벽 렌더: doorPrefabMap에 포함되면 해당 도어프리팹, 아니면 wallPrefab
+        RenderEdges(doorPrefabMap);
 
         // 4) 필요하면 여기서 doorWallPrefab 내부 Door에 스크립트 붙이는 로직 유지 가능
-        // 하지만 "골은 도어가 정하는거야" 라고 했으니 보통 prefab 안에서 처리하는 게 깔끔함.
         if (addDoorScriptToChild)
         {
-            // goal/fake 구분 없이: doorWallPrefab 내부 Door에 공통 Door 스크립트만 붙이는 식으로 바꾸는 게 맞음
             ApplyCommonDoorScriptToAllDoorWalls(doorWalls);
         }
     }
 
     // ------------------- Edge Rendering -------------------
 
-    private void RenderEdges(HashSet<WallEdge> doorEdges)
+    private void RenderEdges(Dictionary<WallEdge, GameObject> doorPrefabMap)
     {
         // 세로벽
         for (int vx = 0; vx < grid.Width + 1; vx++)
@@ -73,12 +108,16 @@ public class MazeRenderer : MonoBehaviour
             Vector3 pos = VerticalWallCenter(vx, y);
             Quaternion rot = Quaternion.Euler(0f, 90f, 0f);
 
-            GameObject prefabToUse = (doorWallPrefab != null && doorEdges.Contains(edge))
-                ? doorWallPrefab
+            GameObject prefabToUse = doorPrefabMap.TryGetValue(edge, out var doorPrefab)
+                ? doorPrefab
                 : wallPrefab;
 
-            if (prefabToUse != null)
-                SpawnWithGroundSnap(prefabToUse, pos, rot);
+            if (prefabToUse == null) continue;
+
+            GameObject spawned = SpawnWithGroundSnap(prefabToUse, pos, rot);
+
+            // ✅ FakeDoor면 PenaltyManager에 등록 (변환 로직은 PenaltyManager가 담당)
+            RegisterIfFakeDoor(spawned);
         }
 
         // 가로벽
@@ -91,14 +130,42 @@ public class MazeRenderer : MonoBehaviour
             Vector3 pos = HorizontalWallCenter(x, hy);
             Quaternion rot = Quaternion.identity;
 
-            GameObject prefabToUse = (doorWallPrefab != null && doorEdges.Contains(edge))
-                ? doorWallPrefab
+            GameObject prefabToUse = doorPrefabMap.TryGetValue(edge, out var doorPrefab)
+                ? doorPrefab
                 : wallPrefab;
 
-            if (prefabToUse != null)
-                SpawnWithGroundSnap(prefabToUse, pos, rot);
+            if (prefabToUse == null) continue;
+
+            GameObject spawned = SpawnWithGroundSnap(prefabToUse, pos, rot);
+
+            // ✅ FakeDoor면 PenaltyManager에 등록
+            RegisterIfFakeDoor(spawned);
         }
     }
+
+private void RegisterIfFakeDoor(GameObject spawned)
+{
+    if (spawned == null) return;
+
+    // ✅ 루트에 없으면 자식에서 찾기
+    DoorBase door = spawned.GetComponent<DoorBase>();
+    if (door == null)
+        door = spawned.GetComponentInChildren<DoorBase>();
+
+    if (door is FakeDoor)
+    {
+        if (PenaltyManager.Instance != null)
+        {
+            PenaltyManager.Instance.RegisterFakeDoor(door);
+            Debug.Log("[MazeRenderer] FakeDoor registered to PenaltyManager.");
+        }
+        else
+        {
+            Debug.LogWarning("[MazeRenderer] PenaltyManager.Instance is null.");
+        }
+    }
+}
+
 
     // ------------------- Pick DoorWall Edges (Inner Only) -------------------
 
@@ -106,7 +173,7 @@ public class MazeRenderer : MonoBehaviour
     {
         var candidates = new List<WallEdge>();
 
-        // ✅ 세로벽 내벽: vx 1..Width-1 만 허용 (0, Width는 외벽)
+        // 세로벽 내벽: vx 1..Width-1 만 허용 (0, Width는 외벽)
         for (int vx = 1; vx < grid.Width; vx++)
         for (int y = 0; y < grid.Height; y++)
         {
@@ -114,7 +181,7 @@ public class MazeRenderer : MonoBehaviour
             candidates.Add(new WallEdge(true, vx, y));
         }
 
-        // ✅ 가로벽 내벽: hy 1..Height-1 만 허용 (0, Height는 외벽)
+        // 가로벽 내벽: hy 1..Height-1 만 허용 (0, Height는 외벽)
         for (int x = 0; x < grid.Width; x++)
         for (int hy = 1; hy < grid.Height; hy++)
         {
@@ -143,8 +210,8 @@ public class MazeRenderer : MonoBehaviour
     private void ApplyCommonDoorScriptToAllDoorWalls(List<WallEdge> doorWalls)
     {
         // 필요 시 구현:
-        // - doorWallPrefab 인스턴스(SpawnWithGroundSnap 반환값)를 저장해두고,
-        // - 그 안의 Door(doorChildName)에게 공통 Door 스크립트만 붙이는 방식이 가장 안정적.
+        // - SpawnWithGroundSnap 반환값을 저장해두고,
+        // - 그 인스턴스 안의 Door(doorChildName)에게 공통 Door 스크립트만 붙이는 방식
         // 지금은 "프리팹에서 이미 스크립트 세팅"을 권장하므로 비워둠.
     }
 

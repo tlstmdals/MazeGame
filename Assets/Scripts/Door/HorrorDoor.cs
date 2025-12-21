@@ -10,18 +10,15 @@ public class HorrorDoor : DoorBase
 
     protected override void OnDoorOpened()
     {
-        // 선택적으로 애니메이션 재생
         if (playOpenAnimation)
             PlayOpenAnimation();
 
-        // 선택적으로 사운드 재생
         if (playSound)
             PlayOpenSound();
 
-        // 페널티 추가
         PenaltyManager.Instance.AddLocalPenalty();
 
-        // 공포 씬 로드
+        // ✅ 공포 씬 전환은 LevelManager에게 위임
         LoadHorrorScene();
 
         Debug.Log("[HorrorDoor] 공포 문이 열렸습니다. 페널티 적용 후 씬 로드: " + horrorSceneName);
@@ -29,7 +26,13 @@ public class HorrorDoor : DoorBase
 
     private void LoadHorrorScene()
     {
-        // 즉시 씬 전환
+        if (LevelManager.Instance != null)
+        {
+            LevelManager.Instance.EnterHorrorScene(horrorSceneName);
+            return;
+        }
+
+        // 안전망
         SceneManager.LoadScene(horrorSceneName);
     }
 

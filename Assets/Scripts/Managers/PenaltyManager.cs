@@ -13,17 +13,26 @@ public class PenaltyManager : MonoBehaviour
     public int penaltyThreshold = 3;     // Required penalties before conversion
     public int convertCount = 1;         // Number of doors to convert at threshold
 
-    private List<FakeDoor> registeredFakeDoors = new List<FakeDoor>();
+    [Header("Horror Door Replacement")]
+    [Tooltip("FakeDoor를 Horror 문벽 프리팹으로 교체할 때 사용할 프리팹(반드시 HorrorDoor 포함 권장)")]
+    public GameObject horrorDoorWallPrefab;
+
+    private readonly List<FakeDoor> registeredFakeDoors = new List<FakeDoor>();
 
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
-    // Called by MazeRenderer as FakeDoors are spawned
+    // MazeRenderer가 FakeDoor 스폰 시 호출
     public void RegisterFakeDoor(DoorBase door)
     {
         FakeDoor fake = door as FakeDoor;
@@ -41,7 +50,7 @@ public class PenaltyManager : MonoBehaviour
         if (LevelPenalty >= penaltyThreshold)
         {
             ConvertFakeDoorsToHorror();
-            LevelPenalty = 0; // Reset for next cycle
+            LevelPenalty = 0;
         }
     }
 
@@ -53,9 +62,18 @@ public class PenaltyManager : MonoBehaviour
 
     private void ConvertFakeDoorsToHorror()
     {
+        // ✅ 이미 삭제된 문 참조 제거
+        registeredFakeDoors.RemoveAll(d => d == null);
+
         if (registeredFakeDoors.Count == 0)
         {
             Debug.LogWarning("[PenaltyManager] No FakeDoors available to convert.");
+            return;
+        }
+
+        if (horrorDoorWallPrefab == null)
+        {
+            Debug.LogError("[PenaltyManager] horrorDoorWallPrefab이 비어있습니다. 프리팹 교체 변환을 할 수 없습니다.");
             return;
         }
 
@@ -66,18 +84,37 @@ public class PenaltyManager : MonoBehaviour
             int index = Random.Range(0, registeredFakeDoors.Count);
             FakeDoor fake = registeredFakeDoors[index];
 
-            GameObject obj = fake.gameObject;
+            if (fake == null)
+            {
+                registeredFakeDoors.RemoveAt(index);
+                i--;
+                continue;
+            }
 
-            // Remove FakeDoor
-            Destroy(fake);
+            GameObject oldObj = fake.gameObject;
 
-            // Add HorrorDoor
-            HorrorDoor horrorDoor = obj.AddComponent<HorrorDoor>();
-            horrorDoor.doorType = DoorType.Horror;
+            // ✅ 기존 오브젝트의 트랜스폼/부모 정보 저장
+            Transform oldT = oldObj.transform;
+            Vector3 pos = oldT.position;
+            Quaternion rot = oldT.rotation;
+            Vector3 scale = oldT.localScale;
+            Transform parent = oldT.parent; // 보통 MazeRenderer의 transform
 
+            // ✅ 새 Horror 문벽 프리팹 생성(교체)
+            GameObject newObj = Instantiate(horrorDoorWallPrefab, pos, rot, parent);
+            newObj.transform.localScale = scale;
+
+            // (선택) 이름 유지하면 Hierarchy에서 찾기 쉬움
+            newObj.name = oldObj.name + "_Horror";
+
+            // ✅ 기존 FakeDoor 문벽 제거
+            Destroy(oldObj);
+
+            // ✅ 리스트에서 제거
             registeredFakeDoors.RemoveAt(index);
 
-            Debug.Log("[PenaltyManager] Converted FakeDoor to HorrorDoor.");
+            // ✅ 로그(콘솔 클릭하면 오브젝트 선택됨)
+            Debug.Log("[PenaltyManager] Replaced FakeDoor with HorrorDoorWallPrefab.", newObj);
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class LevelManager : MonoBehaviour
 
     private MazeGenerator generator;
 
+    // ✅ 미로 씬 이름(호러 씬에서 복귀할 때 사용)
+    private string mazeSceneName;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -29,7 +33,7 @@ public class LevelManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // 향후 씬 전환을 대비해 유지
+        DontDestroyOnLoad(gameObject);
 
         generator = new MazeGenerator();
     }
@@ -37,6 +41,9 @@ public class LevelManager : MonoBehaviour
     /// <summary>요청된 레벨을 초기화하고 미로를 생성/렌더링합니다.</summary>
     public void StartLevel(int levelIndex)
     {
+        // ✅ 현재 씬을 "미로 씬"으로 기록(복귀용)
+        mazeSceneName = SceneManager.GetActiveScene().name;
+
         CurrentLevelIndex = Mathf.Max(0, levelIndex);
 
         ResetLevelState();
@@ -51,6 +58,7 @@ public class LevelManager : MonoBehaviour
         MazeGrid grid = generator.Generate(config);
 
         mazeRenderer.Render(grid);
+        RegisterPlayerForTeleport();
 
         Debug.Log($"[LevelManager] 레벨 {CurrentLevelIndex} 시작 완료. 미로 크기: {config.Width}x{config.Height}");
     }
@@ -71,6 +79,37 @@ public class LevelManager : MonoBehaviour
         }
 
         StartLevel(CurrentLevelIndex);
+    }
+
+    /// <summary>호러 씬으로 진입합니다(씬 전환은 LevelManager가 책임).</summary>
+    public void EnterHorrorScene(string horrorSceneName)
+    {
+        // 안전장치: 아직 기록이 없으면 현재 씬을 미로 씬으로 기록
+        if (string.IsNullOrEmpty(mazeSceneName))
+            mazeSceneName = SceneManager.GetActiveScene().name;
+
+        SceneManager.LoadScene(horrorSceneName);
+    }
+
+    /// <summary>호러 씬에서 호출: 미로 씬으로 복귀한 뒤 현재 레벨을 리스타트합니다(A안).</summary>
+    public void ReturnFromHorrorAndRestart()
+    {
+        if (string.IsNullOrEmpty(mazeSceneName))
+        {
+            Debug.LogError("[LevelManager] mazeSceneName이 비어 있습니다. 복귀할 씬을 알 수 없습니다.");
+            return;
+        }
+
+        SceneManager.sceneLoaded += OnMazeSceneLoadedForRestart;
+        SceneManager.LoadScene(mazeSceneName);
+    }
+
+    private void OnMazeSceneLoadedForRestart(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != mazeSceneName) return;
+
+        SceneManager.sceneLoaded -= OnMazeSceneLoadedForRestart;
+        RestartLevel();
     }
 
     /// <summary>레벨 시작 전 공유 상태를 초기화합니다.</summary>
@@ -106,9 +145,30 @@ public class LevelManager : MonoBehaviour
     {
         if (mazeRenderer == null)
         {
-            mazeRenderer = FindObjectOfType<MazeRenderer>();
+            mazeRenderer = FindAnyObjectByType<MazeRenderer>();
         }
 
         return mazeRenderer != null;
     }
+    private void RegisterPlayerForTeleport()
+    {
+        // 1) Tag로 찾기 (추천: Player 오브젝트 Tag를 "Player"로 설정)
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+
+        // 2) Tag가 없으면 PlayerController로 찾기(안전망)
+        if (playerObj == null)
+        {
+            var pc = FindAnyObjectByType<PlayerController>();
+            if (pc != null) playerObj = pc.gameObject;
+        }
+
+        if (playerObj == null)
+        {
+            Debug.LogWarning("[LevelManager] Player를 찾지 못해 TeleportUtility.RegisterPlayer를 호출하지 못했습니다.");
+            return;
+        }
+
+        TeleportUtility.RegisterPlayer(playerObj.transform);
+    }
+
 }

@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
         if (levelManager == null)
         {
-            levelManager = FindObjectOfType<LevelManager>();
+            levelManager = FindAnyObjectByType<LevelManager>();
         }
 
         if (levelManager == null)
