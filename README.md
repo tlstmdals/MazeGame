@@ -129,15 +129,14 @@ Assets/
 2. 상단 메뉴에서 **File → Clone repository** 클릭
 3. **URL** 탭 선택
 4. 아래 정보를 입력
-
    - Repository URL:  
      ```
-     https://github.com/조직이름/레포이름
+     https://github.com/Team-BeBee/MazeGame
      ```
    - Local Path:  
      👉 **원하는 폴더 위치 선택**
 
-5. **Clone** 버튼 클릭
+6. **Clone** 버튼 클릭
 
 ⏳ 잠시 기다리면 프로젝트가 내려받아집니다.
 
