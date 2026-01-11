@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.3.0">
+  <diagram name="페이지-1" id="fVYWY1mY_UrNAwo9S5eL">
+    <mxGraphModel dx="1431" dy="1115" grid="1" gridSize="16" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pzIUsOhDDbOtJSzOQhNg-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;h1&gt;FlowChart_MS추가(함정)&lt;/h1&gt;" vertex="1">
+          <mxGeometry height="30" width="288" x="64" y="64" as="geometry" />
+        </mxCell>
+        <mxCell id="_Y924N7-JM0RU_8Im3ei-1" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Process 호출" vertex="1">
+          <mxGeometry height="64" width="128" x="192" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-6" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Process 종료" vertex="1">
+          <mxGeometry height="64" width="128" x="192" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="_Y924N7-JM0RU_8Im3ei-2" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;" value="논의 필요" vertex="1">
+          <mxGeometry height="100" width="50" x="400" y="224" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

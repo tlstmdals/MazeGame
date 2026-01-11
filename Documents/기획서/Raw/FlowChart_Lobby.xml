@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.3.0">
+  <diagram name="페이지-1" id="xI3bJAs9cY32-n-I3kl2">
+    <mxGraphModel dx="1431" dy="1115" grid="1" gridSize="12" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-3" edge="1" parent="1" source="z4uLqOFKIkUer_SC9Pa0-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="SLC2gGyPQuu8FcmVclyb-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="z4uLqOFKIkUer_SC9Pa0-8" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="게임실행" vertex="1">
+          <mxGeometry height="80" width="120" x="304" y="128" as="geometry" />
+        </mxCell>
+        <mxCell id="re9xhHZBbV1xR5UjAUk_-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;h1&gt;FlowChart_Lobby&lt;/h1&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="132" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-9" edge="1" parent="1" source="SLC2gGyPQuu8FcmVclyb-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="SLC2gGyPQuu8FcmVclyb-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-10" edge="1" parent="1" source="SLC2gGyPQuu8FcmVclyb-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="SLC2gGyPQuu8FcmVclyb-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-12" edge="1" parent="1" source="SLC2gGyPQuu8FcmVclyb-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="SLC2gGyPQuu8FcmVclyb-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-13" edge="1" parent="1" source="SLC2gGyPQuu8FcmVclyb-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="SLC2gGyPQuu8FcmVclyb-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JToBxTHy4pP_jxWE5-ak-2" edge="1" parent="1" source="SLC2gGyPQuu8FcmVclyb-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="JToBxTHy4pP_jxWE5-ak-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="로비화면" vertex="1">
+          <mxGeometry height="60" width="120" x="304" y="256" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-18" edge="1" parent="1" source="SLC2gGyPQuu8FcmVclyb-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="SLC2gGyPQuu8FcmVclyb-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="게임시작" vertex="1">
+          <mxGeometry height="60" width="120" x="88" y="368" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="옵션" vertex="1">
+          <mxGeometry height="60" width="120" x="232" y="368" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="크레딧" vertex="1">
+          <mxGeometry height="60" width="120" x="500" y="368" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-15" edge="1" parent="1" source="SLC2gGyPQuu8FcmVclyb-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="SLC2gGyPQuu8FcmVclyb-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="종료" vertex="1">
+          <mxGeometry height="60" width="120" x="639" y="368" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-14" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="게임종료" vertex="1">
+          <mxGeometry height="64" width="96" x="651" y="464" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-24" edge="1" parent="1" source="SLC2gGyPQuu8FcmVclyb-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="SLC2gGyPQuu8FcmVclyb-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-17" parent="1" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=process;whiteSpace=wrap;rounded=1;size=0.14;arcSize=6;labelPosition=center;align=center;" value="Level1 시작" vertex="1">
+          <mxGeometry height="60" width="126" x="85" y="464" as="geometry" />
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-23" edge="1" parent="1" source="SLC2gGyPQuu8FcmVclyb-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="SLC2gGyPQuu8FcmVclyb-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="631" />
+              <mxPoint x="48" y="631" />
+              <mxPoint x="48" y="286" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SLC2gGyPQuu8FcmVclyb-22" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="엔딩" vertex="1">
+          <mxGeometry height="53" width="123" x="88" y="558" as="geometry" />
+        </mxCell>
+        <mxCell id="f6vl77a6-wgoYgqxCgmH-1" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 0, 0));&quot;&gt;로그라이크 요소처럼 다회차 플레이를 위한&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 0, 0));&quot;&gt;스텟을 올리거나 능력을 추가할지&lt;br&gt;그렇게 되면 게임내 재화의 필요성이 생김&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="50" x="469" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="JToBxTHy4pP_jxWE5-ak-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="엔딩 정보" vertex="1">
+          <mxGeometry height="60" width="120" x="366" y="368" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

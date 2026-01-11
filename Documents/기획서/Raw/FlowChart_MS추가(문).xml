@@ -1,0 +1,120 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.3.0">
+  <diagram name="페이지-1" id="fVYWY1mY_UrNAwo9S5eL">
+    <mxGraphModel dx="1431" dy="1115" grid="1" gridSize="16" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pzIUsOhDDbOtJSzOQhNg-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;h1&gt;FlowChart_MS추가(문)&lt;/h1&gt;" vertex="1">
+          <mxGeometry height="30" width="288" x="64" y="64" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-4" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="256.0000000000002" y="256" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Process 호출" vertex="1">
+          <mxGeometry height="64" width="128" x="192" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-8" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-9" connectable="0" parent="CyKhoN-UcNS13fGvIfz5-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.2187" y="3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-23" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-25" connectable="0" parent="CyKhoN-UcNS13fGvIfz5-23" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Y" vertex="1">
+          <mxGeometry relative="1" x="0.1818" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-2" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="LifeStage &amp;gt;=&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;2&lt;/span&gt;" vertex="1">
+          <mxGeometry height="64" width="128" x="192" y="256" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-6" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Process 종료" vertex="1">
+          <mxGeometry height="64" width="128" x="192" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-11" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-12" connectable="0" parent="CyKhoN-UcNS13fGvIfz5-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.0625" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-33" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-34" connectable="0" parent="CyKhoN-UcNS13fGvIfz5-33" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Y&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.463" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-7" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="LifeStage &amp;gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;= 6&lt;/span&gt;" vertex="1">
+          <mxGeometry height="64" width="128" x="192" y="352" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-37" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-39" connectable="0" parent="CyKhoN-UcNS13fGvIfz5-37" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Y" vertex="1">
+          <mxGeometry relative="1" x="0.0098" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fqwIqMva0VEXFSExgbcB-3" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-10" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="LifeStage &amp;gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;= 9&lt;/span&gt;" vertex="1">
+          <mxGeometry height="64" width="128" x="192" y="448" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-21" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Mistake Score&lt;div&gt;2 증가&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="196" y="624" as="geometry" />
+        </mxCell>
+        <mxCell id="fqwIqMva0VEXFSExgbcB-1" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="624" y="286" />
+              <mxPoint x="624" y="832" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-22" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="상호작용 문 근처에 있는 물체 낙하&lt;div&gt;or Player 순간이동&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="190" x="354" y="256" as="geometry" />
+        </mxCell>
+        <mxCell id="fqwIqMva0VEXFSExgbcB-7" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-20">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="512" y="382" />
+              <mxPoint x="512" y="576" />
+              <mxPoint x="256" y="576" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="공포공간 게이트 활성화&lt;div&gt;실수시 이면세계로 전이&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="354" y="352" as="geometry" />
+        </mxCell>
+        <mxCell id="fqwIqMva0VEXFSExgbcB-6" edge="1" parent="1" source="CyKhoN-UcNS13fGvIfz5-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="CyKhoN-UcNS13fGvIfz5-20">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="512" y="478" />
+              <mxPoint x="512" y="576" />
+              <mxPoint x="256" y="576" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CyKhoN-UcNS13fGvIfz5-36" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="가짜문이 Player를&lt;div&gt;공격함&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="352" y="448" as="geometry" />
+        </mxCell>
+        <mxCell id="PYRJ5fjDwmSBNEG01Vfx-1" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 28, 28));&quot;&gt;동시에 발생시킬지?&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 28, 28));&quot;&gt;아니면 둘중 랜덤으로 발생?&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="16" x="640" y="256" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
